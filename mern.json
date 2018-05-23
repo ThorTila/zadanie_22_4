@@ -47,9 +47,9 @@
       ]
     },
     {
-      "name": "arrow-function-s",
+      "name": "arrow-functional-s",
       "description": "Generates a functional react component using ES6 syntax in shared components",
-      "usage": "arrow-function-s [component-name]",
+      "usage": "arrow-functional-s [component-name]",
       "files": [
         {
           "blueprint-path": "config/blueprints/arrow-function-component.ejs",
@@ -58,9 +58,9 @@
       ]
     },
     {
-      "name": "functional-m",
+      "name": "arrow-functional-m",
       "description": "Generates a functional react component using ES6 syntax in a module directory",
-      "usage": "arrow-function-m <module-name>/<component-name>",
+      "usage": "arrow-functional-m <module-name>/<component-name>",
       "files": [
         {
           "blueprint-path": "config/blueprints/arrow-function-component.ejs",

@@ -1,0 +1,12 @@
+.nav {
+  text-align: center;
+}
+
+.nav > li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+li > a {
+  text-decoration: none;
+}

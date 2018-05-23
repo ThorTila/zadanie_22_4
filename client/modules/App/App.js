@@ -8,6 +8,7 @@ import styles from './App.css';
 import Helmet from 'react-helmet';
 import DevTools from './components/DevTools';
 import Header from './components/Header/Header';
+import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 
 // Import Actions
@@ -21,7 +22,7 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({isMounted: true}); // eslint-disable-line
+    this.setState({ isMounted: true }); // eslint-disable-line
   }
 
   toggleAddPostSection = () => {
@@ -48,14 +49,9 @@ export class App extends Component {
               },
             ]}
           />
-          <Header
-            switchLanguage={lang => this.props.dispatch(switchLanguage(lang))}
-            intl={this.props.intl}
-            toggleAddPost={this.toggleAddPostSection}
-          />
-          <div className={styles.container}>
-            {this.props.children}
-          </div>
+          <Header switchLanguage={lang => this.props.dispatch(switchLanguage(lang))} intl={this.props.intl} toggleAddPost={this.toggleAddPostSection} />
+          <Nav />
+          <div className={styles.container}>{this.props.children}</div>
           <Footer />
         </div>
       </div>
