@@ -89,3 +89,15 @@ export function editPost(req, res) {
     res.json({ post });
   });
 }
+
+export function changeScore(req, res) {
+  console.log('server odebrał zapytanie');
+  console.log(req.body.post);
+  Post.update({ cuid: req.params.cuid }, req.body.post).exec((err, post) => {
+    if (err) {
+      console.log('błąd');
+      res.status(500).send(err);
+    }
+    res.json({ post });
+  });
+}

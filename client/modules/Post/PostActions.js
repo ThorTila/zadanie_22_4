@@ -5,6 +5,7 @@ export const ADD_POST = 'ADD_POST';
 export const ADD_POSTS = 'ADD_POSTS';
 export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
+export const CHANGE_SCORE = 'CHANGE_SCORE';
 
 // Export Actions
 export function addPost(post) {
@@ -77,5 +78,23 @@ export function editPostRequest(cuid, post) {
         content: post.content,
       },
     }).then(() => dispatch(editPost(cuid, post)));
+  };
+}
+
+export function changeScore(cuid, val) {
+  return {
+    type: CHANGE_SCORE,
+    cuid,
+    val,
+  };
+}
+
+export function changeScoreRequest(post, val) {
+  return dispatch => {
+    return callApi(`posts/${post.cuid}/score?val=${val}`, 'put', {
+      post: {
+        score: post.score + val,
+      },
+    }).then(() => dispatch(changeScore(post.cuid, val)));
   };
 }

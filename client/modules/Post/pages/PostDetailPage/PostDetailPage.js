@@ -7,7 +7,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import styles from '../../components/PostListItem/PostListItem.css';
 
 // Import Actions
-import { fetchPost, editPostRequest } from '../../PostActions';
+import { fetchPost, editPostRequest, changeScoreRequest } from '../../PostActions';
 import { toggleEditPost } from '../../../App/AppActions';
 import { getShowEditPost } from '../../../App/AppReducer';
 
@@ -37,6 +37,11 @@ export class PostDetailPage extends React.Component {
     this.props.editPostRequest(this.state);
   };
 
+  handleChangeScore = val => {
+    this.props.changeScore(this.props.post, val);
+    console.log(val);
+  };
+
   renderPostForm = () => {
     return (
       <div className={styles['form-content']}>
@@ -56,7 +61,15 @@ export class PostDetailPage extends React.Component {
   renderPost = () => {
     return (
       <div className={`${styles['single-post']} ${styles['post-detail']}`}>
-        <h3 className={styles['post-title']}>{this.props.post.title}</h3>
+        <h3 className={styles['post-title']}>
+          {this.props.post.title} <span className="score">{this.props.post.score}</span>
+          <span className="thumb-up" onClick={() => this.handleChangeScore(1)}>
+            +
+          </span>
+          <span className="thumb-down" onClick={() => this.handleChangeScore(-1)}>
+            -
+          </span>
+        </h3>
         <p className={styles['author-name']}>
           <FormattedMessage id="by" /> {this.props.post.name}
         </p>
@@ -97,6 +110,7 @@ function mapDispatchToProps(dispatch, props) {
   return {
     toggleEditPost: () => dispatch(toggleEditPost()),
     editPostRequest: post => dispatch(editPostRequest(props.params.cuid, post)),
+    changeScore: (post, val) => dispatch(changeScoreRequest(post, val)),
   };
 }
 
